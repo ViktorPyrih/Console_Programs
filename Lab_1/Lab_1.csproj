@@ -49,7 +49,7 @@
     <Compile Include="Lab_Programs\Block_2_v15.cs" />
     <Compile Include="Lab_Programs\Block_3_v12.cs" />
     <Compile Include="Lab_Programs\Block_4_v12.cs" />
-    <Compile Include="Lab_Programs\ParentProgram.cs" />
+    <Compile Include="Lab_Programs\AutoFilledArray.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Lab_Programs\IProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

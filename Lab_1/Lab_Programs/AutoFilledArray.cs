@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Lab_1.Lab_Programs
 {
-    abstract class ParentProgram
+    abstract class AutoFilledArray
     {
         protected int[,] array;
 
-        public ParentProgram()
+        public AutoFilledArray()
         {
             Extensions.InputType(out array);
             array.Print();

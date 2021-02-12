@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_1.Lab_Programs
 {
-    class Block_2_v15 : ParentProgram, IProgram
+    class Block_2_v15 : AutoFilledArray, IProgram
     {
 
         public void Run()
