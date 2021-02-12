@@ -23,6 +23,14 @@ namespace Lab1_16
             }
         }
 
+        public static void Print<T>(this T[] originalArray)
+        {
+            for (int i = 0; i < originalArray.GetLength(0); i++)
+            {
+                Console.Write($"{originalArray[i]}\t");
+            }
+        }
+
         public static void Print<T>(this T[,] originalArray)
         {
             for (int i = 0; i < originalArray.GetLength(0); i++)
@@ -34,6 +42,8 @@ namespace Lab1_16
                 Console.WriteLine("\n");
             }
         }
+
+
 
 
         public static void InputType(out int[,] array)
@@ -103,28 +113,25 @@ namespace Lab1_16
 
         private static int[,] keyboard_2_Input()
         {
-            Console.WriteLine("Enter the height of array.");
-            int.TryParse(Console.ReadLine(), out int height);
+            Console.WriteLine("Enter the height & width of array.");
 
-            Console.WriteLine("Enter the elements in one line.");
             var str = Console.ReadLine().Split();
-            var array = new int[height, str.Length / height];
+            int.TryParse(str[0], out int height);
+            int.TryParse(str[1], out int width);
+            var array = new int[height, width];
 
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (int j = 0; j < str.Length / height; j++)
+                Console.WriteLine($"Enter the elements in row {i + 1}/{array.GetLength(0)} (should be {array.GetLength(1)}).");
+                string[] str_ = Console.ReadLine().Split();
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    int.TryParse(str[(i + 1) * (j + 1)], out int n);
-                    array[i, j] = n;
+                    int.TryParse(str_[j], out array[i, j]);
                 }
             }
 
-
             return array;
         }
-
-
-
 
     }
 }
