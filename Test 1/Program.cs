@@ -37,16 +37,16 @@ namespace Test_1
 
     enum Type
     {
-        Bachelor, Master
+        BoyNextDoor, DungeonMaster
     }
 
     class Program
     {
         static void Main(string[] args)
         {
-            var student_1 = new Student("Ivan", "Ivanovich", new DateTime(2001, 03, 15), 1400, Type.Bachelor);
-            var student_2 = new Student("Ivan 2", "Ivanovich", new DateTime(2000, 04, 15), 1400, Type.Bachelor);
-            var student_3 = new Student("Ivan", "Ivanovich", new DateTime(1998, 03, 15), 1200, Type.Master);
+            var student_1 = new Student("Ivan", "Ivanovich", new DateTime(2001, 03, 15), 1400, Type.BoyNextDoor);
+            var student_2 = new Student("Ivan 2", "Ivanovich", new DateTime(2000, 04, 15), 1400, Type.BoyNextDoor);
+            var student_3 = new Student("Ivan", "Ivanovich", new DateTime(1998, 03, 15), 1200, Type.DungeonMaster);
 
             Console.WriteLine(student_1.CompareTo(student_2));
 

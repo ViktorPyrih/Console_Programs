@@ -50,12 +50,7 @@ namespace Lab_1.Lab_Programs
                 {
                     var basicIndex = Array.IndexOf(basic_cols_indexes, needIndex);
 
-                    for (int j = 0; j < array.GetLength(1); j++)
-                    {
-                        var temp = array[basicIndex, j];
-                        array[basicIndex, j] = array[i, j];
-                        array[i, j] = temp;
-                    }
+                    SwapRows(i, basicIndex);
 
                     var temp2 = basic_cols_indexes[i];
                     basic_cols_indexes[i] = needIndex;
@@ -68,5 +63,14 @@ namespace Lab_1.Lab_Programs
             array.Print();
         }
 
+        private void SwapRows(int i, int basicIndex)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                var temp = array[basicIndex, j];
+                array[basicIndex, j] = array[i, j];
+                array[i, j] = temp;
+            }
+        }
     }
 }
