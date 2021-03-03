@@ -49,6 +49,7 @@
     <Compile Include="Classes\TaskPrint.cs" />
     <Compile Include="Classes\Tasks\Task__1_8.cs" />
     <Compile Include="Classes\Tasks\Task__2_8.cs" />
+    <Compile Include="Classes\Tasks\Task__3_8.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Extensions\InputType.cs" />
     <Compile Include="Program.cs" />

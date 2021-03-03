@@ -30,7 +30,7 @@ namespace Lab_2
                     break;
 
                 case "3":
-
+                    _Task = new Task__3_8();
                     break;
             }
 
