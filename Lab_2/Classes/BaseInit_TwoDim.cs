@@ -12,6 +12,7 @@ namespace Lab_2.Classes
 
         public BaseInit_TwoDim(string Text) : base(Text)
         {
+            Console.WriteLine("Input type:");
             InputType.ArrayWithArrays(out array);
             Console.WriteLine("Base array:");
             array.Print();

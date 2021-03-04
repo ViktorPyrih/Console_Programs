@@ -12,6 +12,7 @@ namespace Lab_2.Classes
 
         public BaseInit_OneDim(string Text) : base(Text)
         {
+            Console.WriteLine("Input type:");
             InputType.OneDimension_Array(out array);
             Console.WriteLine("Base array:");
             array.Print();
