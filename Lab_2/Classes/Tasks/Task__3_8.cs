@@ -14,6 +14,7 @@ namespace Lab_2.Classes.Tasks
                                   "пiдряд iндекси нулiв з вiдповiдних рядкiв матрицi B.Iнвертувати порядок елементiв у кожному рядку " +
                                   "матрицi Z.")
         {
+            // Convert matrix to binary type
             for (int i = 0; i < array.Length; i++)
             {
                 for (int j = 0; j < array[i].Length; j++)
@@ -30,6 +31,7 @@ namespace Lab_2.Classes.Tasks
 
         public void Run()
         {
+            // Fill P matrix
             var array_P = new int[array.Length];
             array_P.Fill(0);
 
@@ -41,6 +43,7 @@ namespace Lab_2.Classes.Tasks
                 }
             }
 
+            // Fill Z matrix
             var array_Z = new int[array.Length][];
 
             for (int i = 0; i < array.Length; i++)
@@ -59,9 +62,23 @@ namespace Lab_2.Classes.Tasks
                 array_Z[i] = nested_in_Z_arr;
             }
 
+            Console.WriteLine("Position of zeros in original matrix:");
             array_Z.Print();
 
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = 0, k = 1; j < array[i].Length; j++)
+                {
+                    if (array[i][j] == 0)
+                    {
+                        array_Z[i][k] = array[i].Length - j - 1;
+                        k += 2;
+                    }
+                }
+            }
 
+            Console.WriteLine("Position of zeros in inverted matrix:");
+            array_Z.Print();
 
         }
     }
