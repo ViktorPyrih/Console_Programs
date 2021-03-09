@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace Lab_2.Classes.Tasks
 {
@@ -10,7 +9,7 @@ namespace Lab_2.Classes.Tasks
 
         public void Run()
         {
-            (int K, int T) = GetData();
+            var (K, T) = GetData();
 
             Array.Resize(ref array, array.Length + K);
 
@@ -27,10 +26,10 @@ namespace Lab_2.Classes.Tasks
         private (int, int) GetData()
         {
             Console.WriteLine("Provide how many elements you'd like to insert:");
-            int K = int.Parse(Console.ReadLine());
+            int K = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
 
             Console.WriteLine("Provide index you want to start insertion:");
-            int T = int.Parse(Console.ReadLine());
+            int T = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
 
             return (K, T);
         }
