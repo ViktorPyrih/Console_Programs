@@ -21,16 +21,31 @@ namespace Lab_2
 
             switch (n)
             {
-                case "1":
+                case "18":
                     _Task = new Task__1_8();
                     break;
 
-                case "2":
+                case "28":
                     _Task = new Task__2_8();
                     break;
 
-                case "3":
+                case "38":
                     _Task = new Task__3_8();
+                    break;
+
+                case "110":
+                    new Task__1_10().Run();
+                    break;
+
+                case "210":
+                    new Task__2_10().Run();
+                    break;
+                case "310":
+                    new Task__3_10().Run();
+                    break;
+
+                default:
+                    Main(new string[0]);
                     break;
             }
 
