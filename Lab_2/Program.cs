@@ -34,14 +34,15 @@ namespace Lab_2
                     break;
 
                 case "110":
-                    new Task__1_10().Run();
+                    _Task = new Task__1_10();
                     break;
 
                 case "210":
-                    new Task__2_10().Run();
+                    _Task = new Task__2_10();
                     break;
+
                 case "310":
-                    new Task__3_10().Run();
+                    _Task = new Task__3_10();
                     break;
 
                 default:
