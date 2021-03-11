@@ -43,19 +43,15 @@ namespace Lab_2.Classes.Tasks
             }
         }
         
-        private void ReverseElements(int [] singleArray)
+        private static void ReverseElements(int [] singleArray)
         {
             Stack<int> stack = new Stack<int>(); 
             
             for(int i = 2; i < singleArray.Length; i += 3)
                 stack.Push(singleArray[i]);
             
-            for(var i = 2; i < singleArray.Length; i += 3) 
-            {
-                int x = stack.Peek(); 
-                stack.Pop(); 
-                singleArray[i] = x; 
-            } 
+            for(var i = 2; i < singleArray.Length; i += 3)
+                singleArray[i] = stack.Pop();
         }
 
         private int[][] BuildMatrixFrom(int[] singleArray)

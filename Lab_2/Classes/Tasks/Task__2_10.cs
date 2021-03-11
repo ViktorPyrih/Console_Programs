@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Lab_2.Classes.Tasks
 {
     class Task__2_10 : BaseInit_TwoDim, IRunnable
