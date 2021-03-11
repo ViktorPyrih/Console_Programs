@@ -1,113 +1,55 @@
 ﻿using System;
+using Lab_2.Classes;
 using Lab_2.Classes.Tasks;
 
 namespace Lab_2
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static readonly User[] Users =
         {
-            // Entry point
+            new("Denis", new[] { typeof(Task__1_10), typeof(Task__2_10), typeof(Task__3_10) }),
+            new("Igor", new[] { typeof(Task__1_8), typeof(Task__2_8), typeof(Task__3_8)})
+        };
+        
+        public static void Main()
+        {
             while (true)
             {
                 try
                 {
-                    BlockChoice();
+                    Run(); // Entry point
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Something went wrong!=(");
+                    Console.WriteLine("Unfortunately something went wrong!");
                 }
             }
+            // ReSharper disable once FunctionNeverReturns
         }
 
-        static void BlockChoice()
+        private static void Run()
         {
-            while (true)
-            {
-                Console.WriteLine("Choose block to run (print zero to exit):");
-                
-                if (!int.TryParse(Console.ReadLine(), out int block)) 
-                    continue;
-                
-                switch (block)
-                {
-                    case 0:
-                        Environment.Exit(0);
-                        break;
-                    case 1:
-                        TaskChoice(1);
-                        break;
-                    case 2:
-                        TaskChoice(2);
-                        break;
-                    case 3:
-                        TaskChoice(3);
-                        break;
-                    default:
-                        continue;
-                }
-            }
+            Console.WriteLine("Choose block to run (print 0 to exit):");
+
+            int block;
+            while (!int.TryParse(Console.ReadLine(), out block).Equals(true)){}
+            
+            if (block == 0) Environment.Exit(0);
+
+            Console.WriteLine("Choose task to run:");
+            PrintUsers(block);
+            
+            int task;
+            while (!int.TryParse(Console.ReadLine(), out task).Equals(true)){}
+
+            ((IRunnable) Activator.CreateInstance(Users[task-1].Tasks[block-1]))?.Run();
         }
 
-        private static void TaskChoice(int block)
+        private static void PrintUsers(int block)
         {
-            while (true)
-            {
-                Console.WriteLine("Choose person from below:");
-                Console.WriteLine("1 - Igor\n2 - Denis");
-                
-                if(!int.TryParse(Console.ReadLine(), out int task)) 
-                    continue;
-                
-                switch (task)
-                {
-                    case 1:
-                        IgorTasks(block);
-                        break;
-                    case 2:
-                        DenisTasks(block);
-                        break;
-                    default:
-                        continue;
-                } 
-            }
-        }
-
-        private static void IgorTasks(int block)
-        {
-            switch (block)
-            {
-                case 1:
-                    new Task__1_8().Run();
-                    break;
-                case 2:
-                    new Task__2_8().Run();
-                    break;
-                case 3:
-                    new Task__3_8().Run();
-                    break;
-            }
-
-            BlockChoice();
-        }
-        
-        private static void DenisTasks(int block)
-        {
-            switch (block)
-            {
-                case 1:
-                    new Task__1_10().Run();
-                    break;
-                case 2:
-                    new Task__2_10().Run();
-                    break;
-                case 3:
-                    new Task__3_10().Run();
-                    break;
-            }
-
-            BlockChoice();
+            for (int i = 0; i < Users.Length; ++i)
+                Console.WriteLine($"{i+1} {Users[i].Name} + {Users[i].Tasks[block-1].Name}");
         }
     }
 }
