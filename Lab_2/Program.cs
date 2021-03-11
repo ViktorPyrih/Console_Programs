@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Lab_2.Classes;
 using Lab_2.Classes.Tasks;
 
@@ -6,6 +7,8 @@ namespace Lab_2
 {
     internal static class Program
     {
+        public record User(string Name, IList<Type> Tasks);
+
         private static readonly User[] Users =
         {
             new("Denis", new[] { typeof(Task__1_10), typeof(Task__2_10), typeof(Task__3_10) }),
