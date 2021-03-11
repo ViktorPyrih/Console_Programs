@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Lab_2.Classes.Tasks
 {
@@ -23,7 +25,19 @@ namespace Lab_2.Classes.Tasks
             array.Print();
         }
 
-        private (int, int) GetData()
+        public void RunWithList()
+        {
+            List<int> list = array.ToList();
+            
+            var (K, T) = GetData();
+
+            list.InsertRange(T, Enumerable.Repeat(0, K));
+            
+            Console.WriteLine("New array:");
+            list.Print();
+        }
+
+        private static (int, int) GetData()
         {
             Console.WriteLine("Provide how many elements you'd like to insert:");
             int K = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());

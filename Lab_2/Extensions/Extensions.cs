@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Lab_2
 {
@@ -45,9 +46,9 @@ namespace Lab_2
             }
         }
 
-        public static void Print<T>(this T[] originalArray)
+        public static void Print<T>(this IList<T> originalArray)
         {
-            for (int i = 0; i < originalArray.GetLength(0); i++)
+            for (int i = 0; i < originalArray.Count; i++)
             {
                 Console.Write($"{originalArray[i]}\t");
             }
