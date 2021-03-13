@@ -1,18 +1,21 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using Lab_2.Classes;
 using Lab_2.Classes.Tasks;
 
 namespace Lab_2
 {
-    internal static class Program
+    internal static class AltProgram
     {
+        private record User(string Name, IList<Type> Tasks);
+
         private static readonly User[] Users =
         {
-            new User("Denis", new[] { typeof(Task__1_10), typeof(Task__2_10), typeof(Task__3_10) }),
-            new User("Igor", new[] { typeof(Task__1_8), typeof(Task__2_8), typeof(Task__3_8)})
+            new("Denis", new[] { typeof(Task__1_10), typeof(Task__2_10), typeof(Task__3_10) }),
+            new("Igor", new[] { typeof(Task__1_8), typeof(Task__2_8), typeof(Task__3_8)})
         };
         
-        public static void Main()
+        public static void AltMain()
         {
             while (true)
             {
