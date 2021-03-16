@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Lab_2.Classes;
 using Lab_2.Classes.Tasks;
 
@@ -6,50 +7,28 @@ namespace Lab_2
 {
     internal static class Program
     {
-        private static readonly User[] Users =
+        private static readonly List<User> users = new List<User>
         {
-            new User("Denis", new[] { typeof(Task__1_10), typeof(Task__2_10), typeof(Task__3_10) }),
+            new User("Denis", new[] { typeof(Task__1_10), typeof(Task__2_10), typeof(Task__3_10)}),
             new User("Igor", new[] { typeof(Task__1_8), typeof(Task__2_8), typeof(Task__3_8)})
         };
         
         public static void Main()
         {
-            while (true)
-            {
-                try
-                {
-                    Run(); // Entry point
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Unfortunately something went wrong!");
-                }
-            }
-            // ReSharper disable once FunctionNeverReturns
-        }
+            User.PrintUsers(users);
 
-        private static void Run()
-        {
-            Console.WriteLine("Choose block to run (print 0 to exit):");
+            Console.WriteLine("Choose user to run (print 0 to exit):");
+            int.TryParse(Console.ReadLine(), out int user_code);
 
-            int block;
-            while (!int.TryParse(Console.ReadLine(), out block).Equals(true)){}
-            
-            if (block == 0) Environment.Exit(0);
+            if (user_code == 0) Environment.Exit(0);
+
+            Console.WriteLine(users[user_code - 1]);
 
             Console.WriteLine("Choose task to run:");
-            PrintUsers(block);
-            
-            int task;
-            while (!int.TryParse(Console.ReadLine(), out task).Equals(true)){}
+            int.TryParse(Console.ReadLine(), out int task);
 
-            ((IRunnable) Activator.CreateInstance(Users[task-1].Tasks[block-1]))?.Run();
-        }
-
-        private static void PrintUsers(int block)
-        {
-            for (int i = 0; i < Users.Length; ++i)
-                Console.WriteLine($"{i+1} {Users[i].Name} - {Users[i].Tasks[block-1].Name}");
+            Console.WriteLine($"Trying start task {users[user_code - 1].Tasks[task - 1].Name}...");
+            users[user_code - 1].RunTask(task - 1);
         }
     }
 }
