@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Lab_3.Classes.Tasks;
 
 namespace Lab_3
 {
@@ -10,7 +8,7 @@ namespace Lab_3
     {
         private static readonly List<User> users = new List<User>
         {
-            //new User("Denis", new[] { }),
+            new User("Denis", new[] { typeof(Task__1_2) }),
             new User("Igor", new[] { typeof(Task__1_1) })
         };
 
