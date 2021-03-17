@@ -1,5 +1,4 @@
-﻿using Lab_3.Classes.Tasks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,13 +23,23 @@ namespace Lab_3
 
             if (user_code == 0) Environment.Exit(0);
 
-            Console.WriteLine(users[user_code - 1]);
+            try
+            {
 
-            Console.WriteLine("Choose task to run:");
-            int.TryParse(Console.ReadLine(), out int task);
+                Console.WriteLine(users[user_code - 1]);
 
-            Console.WriteLine($"Trying start task {users[user_code - 1].Tasks[task - 1].Name}...");
-            users[user_code - 1].RunTask(task - 1);
+                Console.WriteLine("Choose task to run:");
+                int.TryParse(Console.ReadLine(), out int task);
+
+                Console.WriteLine($"Trying start {users[user_code - 1].Tasks[task - 1].Name}...\n");
+                users[user_code - 1].RunTask(task - 1);
+
+            }
+            catch (Exception e) 
+            { 
+                Console.WriteLine(e); 
+            }
+            
         }
     }
 }

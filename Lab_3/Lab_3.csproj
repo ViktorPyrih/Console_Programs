@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -44,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\IRunnable.cs" />
-    <Compile Include="Classes\Tasks\MyTime.cs" />
+    <Compile Include="Classes\Models\MyTime.cs" />
+    <Compile Include="Classes\Models\Student.cs" />
     <Compile Include="Classes\Tasks\Task__1_1.cs" />
+    <Compile Include="Classes\Tasks\Task__2_14.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />

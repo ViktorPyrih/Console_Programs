@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab_3.Classes.Tasks
+namespace Lab_3
 {
     class MyTime
     {
@@ -17,6 +17,7 @@ namespace Lab_3.Classes.Tasks
             this.hour = hour;
             this.minute = minute;
             this.second = second;
+            Reformate();
         }
 
         public MyTime(int hour, int minute)
@@ -24,72 +25,77 @@ namespace Lab_3.Classes.Tasks
             this.hour = hour;
             this.minute = minute;
             second = 0;
+            Reformate();
         }
 
-        public override string ToString() 
-            => string.Format("{0:00 0:00 0:00}", hour, minute, second);
+        private void Reformate()
+        {
+            minute += second / 60;
+            second %= 60;
+            hour += minute / 60;
+
+            if ((hour < 0 || minute < 0 || second < 0) && !(hour <= 0 && minute <= 0 && second <= 0))
+            {
+                // convert to seconds & back
+                var sec = TimeSinceMidnight(this);
+                var mt = TimeSinceMidnight(sec);
+                hour = mt.hour;
+                minute = mt.minute;
+                second = mt.second;
+            }
+
+            hour %= 24;
+        } 
+
+        public override string ToString() => string.Format("{0:00}:{1:00}:{2:00}", hour, minute, second);
 
         public void AddOneSecond() 
         {
             second++;
-            if (second >= 60)
-            {
-                second = 0;
-                AddOneMinute();
-            }
+            Reformate();
         }
 
         public void AddOneMinute() 
         {
             minute++;
-            if (minute >= 60)
-            {
-                minute = 0;
-                AddOneHour();
-            }
+            Reformate();
         }
 
         public void AddOneHour() 
         {
             hour++;
-            hour %= 24;
+            Reformate();
         }
 
         public void AddSeconds(int s) 
         {
             second += s;
-            AddMinutes(second / 60);
-            second %= 60;
+            Reformate();
         }
 
         public void AddMinutes(int m)
         {
             minute += m;
-            AddHours(minute / 60);
-            minute %= 60;
+            Reformate();
         }
 
         public void AddHours(int h)
         {
             hour += h;
-            hour %= 24;
+            Reformate();
         }
 
         public static MyTime DifferenceBetween(MyTime mt1, MyTime mt2) => mt1 - mt2;
 
-        public static int TimeSinceMidnight(MyTime mt1) => mt1.second + mt1.minute * 60 + mt1.hour * 360;
+        public static int TimeSinceMidnight(MyTime mt1) => mt1.second + mt1.minute * 60 + mt1.hour * 3600;
 
-        public static MyTime TimeSinceMidnight(int sec) => new MyTime(sec / 360, (sec % 360) / 60, (sec % 21600);
+        public static MyTime TimeSinceMidnight(int sec) => new MyTime(sec / 3600, (sec % 3600) / 60, ((sec % 3600) % 60));
 
-        public static MyTime operator -(MyTime mt1, MyTime mt2)
-        {
-            return new MyTime(mt1.hour - mt2.hour, mt1.minute - mt2.minute, mt1.second - mt1.second);
-        }
+        public static MyTime operator -(MyTime mt1, MyTime mt2) 
+            => new MyTime(mt1.hour - mt2.hour, mt1.minute - mt2.minute, mt1.second - mt2.second);
 
-        public static MyTime operator +(MyTime mt1, MyTime mt2)
-        {
-            return new MyTime(mt1.hour + mt2.hour, mt1.minute + mt2.minute, mt1.second + mt1.second);
-        }
+        public static MyTime operator +(MyTime mt1, MyTime mt2) 
+            => new MyTime(mt1.hour + mt2.hour, mt1.minute + mt2.minute, mt1.second + mt2.second);
 
         public static bool operator >(MyTime mt1, MyTime mt2)
             => mt1.hour > mt2.hour || 
@@ -106,6 +112,10 @@ namespace Lab_3.Classes.Tasks
             => mt1.hour == mt2.hour && mt1.minute == mt2.minute && mt1.second == mt2.second;
 
         public static bool operator !=(MyTime mt1, MyTime mt2) => !(mt1 == mt2);
+
+        public override bool Equals(object obj) => obj is MyTime && (obj as MyTime) == this;
+
+        public override int GetHashCode() => TimeSinceMidnight(this);
 
         public string WhatLesson() 
         {
@@ -133,6 +143,5 @@ namespace Lab_3.Classes.Tasks
             else 
                 return "Lessons are over";
         }
-
     }
 }

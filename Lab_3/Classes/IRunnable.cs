@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab_3.Classes
+namespace Lab_3
 {
     interface IRunnable
     {        
