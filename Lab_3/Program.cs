@@ -8,8 +8,8 @@ namespace Lab_3
     {
         private static readonly List<User> users = new List<User>
         {
-            //new User("Denis", new[] { }),
-            new User("Igor", new[] { typeof(Task__1_1) })
+            new User("Denis", new[] { typeof(Task__1_2) }),
+            new User("Igor", new[] { typeof(Task__1_1), typeof(Task__2_14) })
         };
 
         static void Main(string[] args)
