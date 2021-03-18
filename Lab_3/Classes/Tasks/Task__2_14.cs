@@ -10,9 +10,21 @@ namespace Lab_3
     {
         public void Run()
         {
-            List<Student> students = new List<Student>();
+            List<Student> students = StudentsRepository.GetStudentsFromFile();
 
-            var av_mark_st = students.Select(x => x.surName);
+            var average_mark = students
+                .Select(x => (x.informaticsMark + x.mathematicsMark + x.physicsMark) / 3)
+                .Average();
+
+            Console.WriteLine("Average mark is " + average_mark);
+
+            var students_with_good_marks = students
+                .Where(x => ((x.informaticsMark + x.mathematicsMark + x.physicsMark) / 3) > average_mark)
+                .ToList();
+
+            Console.WriteLine(string.Join("\n", students_with_good_marks
+                .Select(x => x.surName)
+                .ToList()));
         }
     }
 }
