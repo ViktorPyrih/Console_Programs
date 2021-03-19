@@ -8,7 +8,7 @@ namespace Lab_3
     {
         private static readonly List<User> users = new List<User>
         {
-            new User("Denis", new[] { typeof(Task__1_2) }),
+            new User("Denis", new[] { typeof(Task__1_2), typeof(Task__2_8) }),
             new User("Igor", new[] { typeof(Task__1_1), typeof(Task__2_14) })
         };
 
@@ -32,13 +32,11 @@ namespace Lab_3
 
                 Console.WriteLine($"Trying start {users[user_code - 1].Tasks[task - 1].Name}...\n");
                 users[user_code - 1].RunTask(task - 1);
-
             }
             catch (Exception e) 
             {
                 Console.WriteLine("Something went wrong...\n" + e);
             }
-            
         }
     }
 }
