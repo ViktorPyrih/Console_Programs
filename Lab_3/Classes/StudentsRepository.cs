@@ -22,9 +22,9 @@ namespace Lab_3
             new Student("Andrew", "Steel", "Igorovich", 'M', new DateTime(1997, 12, 31), 2, 3, 2, 0),
             new Student("Keanu", "Reeves", "Yeah", 'M', new DateTime(2001, 11, 29), 5, 4, 5, 1500),
             new Student("John", "Wick", "Cool", 'M', new DateTime(1999, 10, 05), 2, 3, 2, 0),
-            new Student("Madam", "Dzerdginski", "Viktorovna", 'F', new DateTime(2000, 05, 05), 3, 3, 3, 0),
+            new Student("Madam", "Dzerdginski", "Viktorovna", 'F', new DateTime(2008, 05, 05), 3, 3, 3, 0),
             new Student("Johnny", "Silverhand", "Cyber", 'M', new DateTime(2001, 07, 12), 4, 5, 4, 1000),
-            new Student("Christopher", "Lloyd", "Allen", 'M', new DateTime(2002, 08, 15), 4, 4, 2, 0),
+            new Student("Christopher", "Lloyd", "Allen", 'M', new DateTime(2012, 08, 15), 4, 4, 2, 0),
             new Student("Illya", "Prusikin", "Vladimirovich", 'M', new DateTime(1998, 09, 25), 4, 5, 4, 500),
             new Student("Alina", "Pavlovna", "Nikitivna", 'F', new DateTime(1999, 04, 10), 2, 2, 4, 0)
         };
