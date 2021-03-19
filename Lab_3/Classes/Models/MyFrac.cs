@@ -2,19 +2,16 @@ using System;
 
 namespace Lab_3.Classes.Models
 {
-    public struct MyFrac
+    internal struct MyFrac
     {
         private long Numerator { get; set;  }
 
         private long Denominator { get; set; }
 
-        public MyFrac(long numerator)
-        {
-            Numerator = numerator;
-            Denominator = 1;
-        }
-
-        public MyFrac(long numerator, long denominator)
+        public static MyFrac Fraction(long numerator, long denominator = 1) 
+            => new MyFrac(numerator, denominator);
+        
+        private MyFrac(long numerator, long denominator)
         {
             if (denominator == 0)
                 throw new ArgumentException("Denominator cannot be zero.", nameof(denominator));
@@ -52,22 +49,25 @@ namespace Lab_3.Classes.Models
 
         public string ToStringWithIntegerPart()
         {
+            if (Denominator == 1) return Numerator.ToString();
             string sign = Numerator >= 0 ? "" : "-";
             return $"{sign}"
                    + $"({Math.Abs(Numerator) / Denominator}+"
                    + $"{Numerator % Denominator}/{Denominator})";
         }
 
-        public override string ToString() =>
-            $"{Numerator}/{Denominator}";
+        public override string ToString()
+            => $"{Numerator}/{Denominator}";
 
-        public static explicit operator double(MyFrac a) =>
-            (double) a.Numerator / a.Denominator;
+        public static explicit operator double(MyFrac a) 
+            => (double) a.Numerator / a.Denominator;
         
         public static MyFrac operator +(MyFrac a) => a;
-        public static MyFrac operator -(MyFrac a) => new MyFrac(-a.Numerator, a.Denominator);
+        
+        public static MyFrac operator -(MyFrac a) 
+            => new MyFrac(-a.Numerator, a.Denominator);
 
-        public static MyFrac operator +(MyFrac a, MyFrac b)
+        public static MyFrac operator +(MyFrac a, MyFrac b) 
             => new MyFrac(
                 a.Numerator * b.Denominator + b.Numerator * a.Denominator,
                 a.Denominator * b.Denominator
