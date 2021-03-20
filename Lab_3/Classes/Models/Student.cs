@@ -14,6 +14,7 @@ namespace Lab_3
         [JsonProperty]
         public string patronymic { get; private set; }
 
+        [JsonIgnore]
         public string fullName => $"{surName} {firstName} {patronymic}";
 
         [JsonProperty]
