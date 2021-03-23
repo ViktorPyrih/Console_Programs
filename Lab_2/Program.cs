@@ -29,6 +29,8 @@ namespace Lab_2
 
             Console.WriteLine($"Trying start task {users[user_code - 1].Tasks[task - 1].Name}...");
             users[user_code - 1].RunTask(task - 1);
+
+            Console.ReadKey();
         }
     }
 }

@@ -32,6 +32,8 @@ namespace Lab_3
 
                 Console.WriteLine($"Trying start {users[user_code - 1].Tasks[task - 1].Name}...\n");
                 users[user_code - 1].RunTask(task - 1);
+
+                Console.ReadKey();
             }
             catch (Exception e) 
             {
