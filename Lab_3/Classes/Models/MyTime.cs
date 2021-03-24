@@ -100,7 +100,7 @@ namespace Lab_3
         public static bool operator >(MyTime mt1, MyTime mt2)
             => mt1.hour > mt2.hour || 
             (mt1.hour == mt2.hour && mt1.minute > mt2.minute || 
-            (mt1.minute == mt2.minute && mt1.second > mt2.second));
+            (mt1.hour == mt2.hour && mt1.minute == mt2.minute && mt1.second > mt2.second));
 
         public static bool operator >=(MyTime mt1, MyTime mt2) => (mt1 > mt2 || mt1 == mt2);
 
