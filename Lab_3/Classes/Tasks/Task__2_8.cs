@@ -11,10 +11,11 @@ namespace Lab_3.Classes.Tasks
         
         public void Run()
         {
-            List<Student> students = StudentsRepository.GetStudentsFromFile();
+            List<Student> students = StudentsRepository.ChooseTypeOfGettingStudents();
 
             List<Student> selectedStudents = students
-                .Where(student => GetAge(student) < 16).ToList();
+                .Where(student => GetAge(student) < 16)
+                .ToList();
 
             Console.WriteLine($"Number of students younger than 16: {selectedStudents.Count}\n");
 

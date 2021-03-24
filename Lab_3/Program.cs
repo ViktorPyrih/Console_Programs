@@ -28,7 +28,7 @@ namespace Lab_3
                 Console.WriteLine("Choose task to run:");
                 int.TryParse(Console.ReadLine(), out int task);
 
-                StudentsRepository.FillDocument();
+                StudentsRepository.FillJsonDocument();
 
                 Console.WriteLine($"Trying start {users[user_code - 1].Tasks[task - 1].Name}...\n");
                 users[user_code - 1].RunTask(task - 1);

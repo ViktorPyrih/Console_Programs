@@ -10,7 +10,7 @@ namespace Lab_3
     {
         public void Run()
         {
-            List<Student> students = StudentsRepository.GetStudentsFromFile();
+            List<Student> students = StudentsRepository.ChooseTypeOfGettingStudents();
 
             var average_mark = students
                 .Select(x => (x.informaticsMark + x.mathematicsMark + x.physicsMark) / 3)

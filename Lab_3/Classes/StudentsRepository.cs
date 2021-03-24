@@ -10,10 +10,38 @@ namespace Lab_3
 {
     static class StudentsRepository
     {
-        public static readonly string PATH = Environment.CurrentDirectory + @"\Saves.json";
+        public static readonly string PATH_json = Environment.CurrentDirectory + @"\Saves.json";
+        public static readonly string PATH_txt = Environment.CurrentDirectory + @"\Saves.txt";
 
-        public static List<Student> GetStudentsFromFile() 
-            => JsonConvert.DeserializeObject<List<Student>>(File.ReadAllText(PATH));
+        public static List<Student> GetStudentsFromJson() 
+            => JsonConvert.DeserializeObject<List<Student>>(File.ReadAllText(PATH_json));
+
+        public static List<Student> GetStudentsFromTxt()
+        {
+            var list = new List<Student>();
+
+            using (StreamReader sr = new StreamReader(PATH_txt))
+            {
+                var line = sr.ReadLine();
+                while (line != null)
+                {
+                    list.Add(new Student(line));
+                    line = sr.ReadLine();
+                }
+            }
+
+            return list;
+        }
+
+        public static List<Student> ChooseTypeOfGettingStudents()
+        {
+            Console.WriteLine("Print 'Json' to get list from json file or 'Txt' to get from txt file.");
+            var text = Console.ReadLine().ToLower();
+
+            if (text == "json") return GetStudentsFromJson();
+            else if (text == "txt") return GetStudentsFromTxt();
+            else return new List<Student>();
+        }
 
         private static readonly List<Student> dictionary = new List<Student>
         {
@@ -29,7 +57,7 @@ namespace Lab_3
             new Student("Alina", "Pavlovna", "Nikitivna", 'F', new DateTime(1999, 04, 10), 2, 2, 4, 0)
         };
 
-        public static void FillDocument() 
-            => File.WriteAllText(PATH, JsonConvert.SerializeObject(dictionary));
+        public static void FillJsonDocument() 
+            => File.WriteAllText(PATH_json, JsonConvert.SerializeObject(dictionary));
     }
 }
