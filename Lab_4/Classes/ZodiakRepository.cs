@@ -21,8 +21,7 @@ namespace Lab_4
                 .Where(x => x.surname == surname)
                 .ToList();
 
-        public void SortByBirthday() 
-            => zodiaks = zodiaks.OrderBy(x => x.birthday).ToList();
+        public void Sort() => zodiaks = zodiaks.OrderBy(x => x).ToList();
 
     }
 }

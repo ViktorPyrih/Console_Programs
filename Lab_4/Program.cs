@@ -75,11 +75,14 @@ namespace Lab_4
 
 
             var repository = new ZodiakRepository(list);
-            repository.SortByBirthday();
+            repository.Sort();
 
-            FileParser.SerializeFile(repository.zodiaks);
-            FileParser.WriteToFile(repository.zodiaks);
-            Console.WriteLine("Saves were changed\n");
+            if (str == "keyboard")
+            {
+                FileParser.SerializeFile(repository.zodiaks);
+                FileParser.WriteToFile(repository.zodiaks);
+                Console.WriteLine("Saves were changed\n");
+            }
 
             Console.WriteLine("Print surname so we could it find.");
             Console.WriteLine(string.Join("\n", 

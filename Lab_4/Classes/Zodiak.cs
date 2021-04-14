@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab_4
 {
-    class Zodiak
+    class Zodiak : IComparable
     {
         [JsonProperty]
         public string name { get; private set; }
@@ -34,5 +34,25 @@ namespace Lab_4
 
         public override string ToString()
             => $"{name} {surname} {zodiakType} {birthday.Day}.{birthday.Month}.{birthday.Year}";
+
+        public int CompareTo(object obj)
+        {
+            if (obj is Zodiak)
+            {
+                var other_zodiak = obj as Zodiak;
+
+                var comp_1 = birthday.CompareTo(other_zodiak.birthday);
+                if (comp_1 != 0) return comp_1;
+
+                var comp_2 = name.CompareTo(other_zodiak.name);
+                if (comp_2 != 0) return comp_2;
+
+                var comp_3 = surname.CompareTo(other_zodiak.surname);
+                if (comp_3 != 0) return comp_3;
+
+                return zodiakType.CompareTo(other_zodiak.zodiakType);
+            }
+            else return -1;
+        }
     }
 }
