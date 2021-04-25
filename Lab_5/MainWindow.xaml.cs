@@ -26,33 +26,35 @@ namespace Lab_5
         public MainWindow()
         {
             InitializeComponent();
-            OnLoad();
-            new Thread(Draw).Start();
-            new Thread(Update).Start();
-        }
 
-        private void OnLoad()
-        {
-            DrawingVisual dv = new DrawingVisual();
-            using (DrawingContext dc = dv.RenderOpen())
+            new Thread(() =>
             {
-                DrawPrimitives(dc);
-            }
-
-            RenderTargetBitmap rtb = new RenderTargetBitmap((int)Width, (int)Height, 96, 96, PixelFormats.Pbgra32);
-            rtb.Render(dv);
-
-            PictureBox.Source = rtb;
+                while (true)
+                {
+                    Draw();
+                    Thread.Sleep(20);
+                }
+            }).Start();
         }
 
         private void Draw()
         {
-            
-        }
+            Dispatcher.Invoke(() => 
+            {
+                DrawingVisual dv = new DrawingVisual();
+                using (DrawingContext dc = dv.RenderOpen())
+                {
+                    //DrawPrimitives(dc);
+                    //DrawFerrisWheel(dc);
+                    //DrawAnimatedCircle(dc);
+                    Draw_UFO_Animation(dc);
+                }
 
-        private void Update()
-        {
+                RenderTargetBitmap rtb = new RenderTargetBitmap((int)Width, (int)Height, 96, 96, PixelFormats.Pbgra32);
+                rtb.Render(dv);
 
+                PictureBox.Source = rtb;
+            });
         }
 
     }

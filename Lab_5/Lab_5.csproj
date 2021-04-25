@@ -59,7 +59,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Extensions Folder\DC_Extensions.cs" />
+    <Compile Include="Format Blanks\BasicFormats.cs" />
+    <Compile Include="Format Blanks\Format.cs" />
     <Compile Include="Tasks\Task_A.cs" />
+    <Compile Include="Tasks\Task_B.cs" />
+    <Compile Include="Tasks\Task_C.cs" />
+    <Compile Include="Tasks\Task_D.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
