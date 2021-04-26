@@ -31,6 +31,7 @@ namespace Lab_5
             {
                 while (true)
                 {
+                    // 25 times per second
                     Draw();
                     Thread.Sleep(20);
                 }
@@ -44,10 +45,21 @@ namespace Lab_5
                 DrawingVisual dv = new DrawingVisual();
                 using (DrawingContext dc = dv.RenderOpen())
                 {
-                    //DrawPrimitives(dc);
-                    //DrawFerrisWheel(dc);
-                    //DrawAnimatedCircle(dc);
-                    Draw_UFO_Animation(dc);
+                    switch (taskState)
+                    {
+                        case 1:
+                            DrawPrimitives(dc);
+                            break;
+                        case 2:
+                            DrawFerrisWheel(dc);
+                            break;
+                        case 3:
+                            DrawAnimatedCircle(dc);
+                            break;
+                        case 4:
+                            Draw_UFO_Animation(dc);
+                            break;
+                    }
                 }
 
                 RenderTargetBitmap rtb = new RenderTargetBitmap((int)Width, (int)Height, 96, 96, PixelFormats.Pbgra32);
@@ -57,5 +69,18 @@ namespace Lab_5
             });
         }
 
+
+        private int taskState = 1;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender == ButtonRight) taskState++;
+            if (sender == ButtonLeft) taskState--;
+
+            ButtonLeft.IsEnabled = true;
+            ButtonRight.IsEnabled = true;
+
+            if (taskState == 1) ButtonLeft.IsEnabled = false;
+            if (taskState == 4) ButtonRight.IsEnabled = false;
+        }
     }
 }
