@@ -31,7 +31,7 @@ namespace Lab_5
             {
                 while (true)
                 {
-                    // 25 times per second
+                    // 50 times per second
                     Draw();
                     Thread.Sleep(20);
                 }
