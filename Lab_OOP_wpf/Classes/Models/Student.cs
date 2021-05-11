@@ -13,32 +13,16 @@ namespace Lab_OOP_wpf.Classes.Models
 
     class Student : PropertyChangedNotifier, ICloneable, IEquatable<Student>
     {
-        public Student(Person person, EducationalLevel obtainedEducationalLevel, ObservableCollection<Exam> exams)
+        public Student(Person person, EducationalLevel obtainedEducationalLevel, ObservableCollection<Exam> exams = null)
         {
             this.person = person;
             this.obtainedEducationalLevel = obtainedEducationalLevel;
-            this.exams = exams;
+            this.exams = exams ?? new ObservableCollection<Exam>();
         }
 
-        public Person person
-        {
-            get => person;
-            set
-            {
-                person = value;
-                OnPropertyChanged(nameof(person));
-            }
-        }
+        public Person person { get; private set; }
 
-        public EducationalLevel obtainedEducationalLevel
-        {
-            get => obtainedEducationalLevel;
-            set
-            {
-                obtainedEducationalLevel = value;
-                OnPropertyChanged(nameof(obtainedEducationalLevel));
-            }
-        }
+        public EducationalLevel obtainedEducationalLevel { get; private set; }
 
         public ObservableCollection<Exam> exams
         {
@@ -50,6 +34,8 @@ namespace Lab_OOP_wpf.Classes.Models
             }
         }
 
+
+        public void AddExam(Exam exam) => exams.Add(exam ?? throw new NullReferenceException("You are trying to put 'null' into exams."));
 
         public object Clone() => new Student(person.Clone() as Person, obtainedEducationalLevel, exams.Clone() as ObservableCollection<Exam>);
 

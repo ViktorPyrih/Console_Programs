@@ -10,7 +10,20 @@ namespace Lab_OOP_wpf.Classes.ViewModels
 {
     class TestViewModel : BasicViewModel
     {
-        public ObservableCollection<Student> students_repos { get; private set; }
+
+        public TestViewModel()
+        {
+            var student1 = new Student(new Person("Ivan", "Ivanovich", new DateTime(2001, 12, 20)), EducationalLevel.Bachelor);
+            var student2 = new Student(new Person("Petya", "Zabolotniy", new DateTime(1999, 10, 15)), EducationalLevel.Bachelor);
+            var student3 = new Student(new Person("Grisha", "Rzhanoi", new DateTime(1997, 05, 12)), EducationalLevel.Master);
+            var student4 = new Student(new Person("Denis", "Golden", new DateTime(1995, 09, 02)), EducationalLevel.Specialist);
+
+            students = new ObservableCollection<Student> { student1, student2, student3, student4 };
+
+            var math_exam = new Exam("Math", 5, new DateTime(2021, 05, 25));
+
+            students[0].AddExam(math_exam);
+        }
 
 
 
