@@ -20,12 +20,35 @@ namespace Lab_OOP_wpf.Classes.Models
             this.exams = exams;
         }
 
-        public Person person { get; set; }
+        public Person person
+        {
+            get => person;
+            set
+            {
+                person = value;
+                OnPropertyChanged(nameof(person));
+            }
+        }
 
-        public EducationalLevel obtainedEducationalLevel { get; set; }
+        public EducationalLevel obtainedEducationalLevel
+        {
+            get => obtainedEducationalLevel;
+            set
+            {
+                obtainedEducationalLevel = value;
+                OnPropertyChanged(nameof(obtainedEducationalLevel));
+            }
+        }
 
-        public ObservableCollection<Exam> exams { get; set; }
-
+        public ObservableCollection<Exam> exams
+        {
+            get => exams;
+            set
+            {
+                exams = value;
+                OnPropertyChanged(nameof(exams));
+            }
+        }
 
 
         public object Clone() => new Student(person.Clone() as Person, obtainedEducationalLevel, exams.Clone() as ObservableCollection<Exam>);
@@ -38,5 +61,12 @@ namespace Lab_OOP_wpf.Classes.Models
                 obtainedEducationalLevel.Equals(other.obtainedEducationalLevel) &&
                 EqualityComparer<ObservableCollection<Exam>>.Default.Equals(exams, other.exams);
         }
+
+
+        public override string ToString()
+            => $"Student {person}, {obtainedEducationalLevel};\nExams: {string.Join("\n\t", exams)}.";
+
+        public string ToShortString()
+            => $"Student {person.surname} : {exams.Average(x => (int)x.mark)}";
     }
 }

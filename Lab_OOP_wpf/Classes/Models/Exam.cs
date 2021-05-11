@@ -32,5 +32,8 @@ namespace Lab_OOP_wpf.Classes.Models
                 mark.Equals(other.mark) &&
                 exam_day.Equals(other.exam_day);
         }
+
+        public override string ToString()
+            => $"{name}-{mark} ({exam_day.Day}.{exam_day.Month}.{exam_day.Year})";
     }
 }
