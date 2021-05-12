@@ -11,6 +11,7 @@ namespace Lab_OOP_wpf.Classes.ViewModels
     class TestViewModel : BasicViewModel
     {
 
+         
         public TestViewModel()
         {
             var student1 = new Student(new Person("Ivan", "Ivanovich", new DateTime(2001, 12, 20)), EducationalLevel.Bachelor);
@@ -24,9 +25,6 @@ namespace Lab_OOP_wpf.Classes.ViewModels
 
             students[0].AddExam(math_exam);
         }
-
-
-
 
     }
 }

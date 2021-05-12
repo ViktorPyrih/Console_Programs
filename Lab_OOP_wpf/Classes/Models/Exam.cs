@@ -34,6 +34,6 @@ namespace Lab_OOP_wpf.Classes.Models
         }
 
         public override string ToString()
-            => $"{name}-{mark} ({exam_day.Day}.{exam_day.Month}.{exam_day.Year})";
+            => $"{name} - {mark} ({exam_day.Day}.{exam_day.Month}.{exam_day.Year})";
     }
 }

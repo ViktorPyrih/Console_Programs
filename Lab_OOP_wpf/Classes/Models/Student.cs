@@ -17,27 +17,56 @@ namespace Lab_OOP_wpf.Classes.Models
         {
             this.person = person;
             this.obtainedEducationalLevel = obtainedEducationalLevel;
-            this.exams = exams ?? new ObservableCollection<Exam>();
+            this.exams = exams == null ? new ObservableCollection<Exam>() { } : exams;
         }
 
-        public Person person { get; private set; }
 
-        public EducationalLevel obtainedEducationalLevel { get; private set; }
+        private Person Person;
 
-        public ObservableCollection<Exam> exams
+        public Person person
         {
-            get => exams;
+            get => Person;
             set
             {
-                exams = value;
-                OnPropertyChanged(nameof(exams));
+                Person = value;
+                OnPropertyChanged(nameof(Person));
             }
         }
 
 
-        public void AddExam(Exam exam) => exams.Add(exam ?? throw new NullReferenceException("You are trying to put 'null' into exams."));
+        private EducationalLevel ObtainedEducationalLevel;
 
-        public object Clone() => new Student(person.Clone() as Person, obtainedEducationalLevel, exams.Clone() as ObservableCollection<Exam>);
+        public EducationalLevel obtainedEducationalLevel
+        {
+            get => ObtainedEducationalLevel;
+            set
+            {
+                ObtainedEducationalLevel = value;
+                OnPropertyChanged(nameof(ObtainedEducationalLevel));
+            }
+        }
+
+
+        private ObservableCollection<Exam> Exams;
+
+        public ObservableCollection<Exam> exams
+        {
+            get => Exams;
+            set
+            {
+                Exams = value;
+                OnPropertyChanged(nameof(Exams));
+            }
+        }
+
+
+        public void AddExam(Exam exam) 
+        {
+            Exams.Add(exam ?? throw new NullReferenceException("You're trying to put 'null' into exams."));
+            OnPropertyChanged(nameof(Exams));
+        }
+
+        public object Clone() => new Student(Person.Clone() as Person, obtainedEducationalLevel, exams.Clone() as ObservableCollection<Exam>);
 
         public bool Equals(Student other)
         {
@@ -50,9 +79,9 @@ namespace Lab_OOP_wpf.Classes.Models
 
 
         public override string ToString()
-            => $"Student {person}, {obtainedEducationalLevel};\nExams: {string.Join("\n\t", exams)}.";
+            => $"Student {person}, {obtainedEducationalLevel}{(exams.Count > 0 ? $";\nExams: {string.Join("\n\t", exams)}" : "")}.";
 
         public string ToShortString()
-            => $"Student {person.surname} : {exams.Average(x => (int)x.mark)}";
+            => $"Student {person.surname} : {(exams.Count > 0 ? exams.Average(x => (int)x.mark).ToString() : "No marks")}";
     }
 }

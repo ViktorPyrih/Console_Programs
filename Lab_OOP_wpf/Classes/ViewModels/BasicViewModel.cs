@@ -12,13 +12,14 @@ namespace Lab_OOP_wpf.Classes.ViewModels
 {
     abstract class BasicViewModel : PropertyChangedNotifier
     {
+        private ObservableCollection<Student> Students;
         public ObservableCollection<Student> students
         {
-            get => students;
+            get => Students;
             protected set
             {
-                students = value;
-                OnPropertyChanged(nameof(students));
+                Students = value;
+                OnPropertyChanged(nameof(Students));
             }
         }
 

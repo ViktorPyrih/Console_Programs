@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab_OOP_wpf.Classes.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace Lab_OOP_wpf
         public MainWindow()
         {
             InitializeComponent();
+
+            ViewFrame.Content = new TestView();
         }
     }
 }

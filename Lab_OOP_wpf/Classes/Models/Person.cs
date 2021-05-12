@@ -34,6 +34,6 @@ namespace Lab_OOP_wpf.Classes.Models
         }
 
         public override string ToString()
-            => $"{name} {surname} birthay: {birthday.Day}.{birthday.Month}.{birthday.Year}";
+            => $"{name} {surname}, birthday: {birthday.Day}.{birthday.Month}.{birthday.Year}";
     }
 }
