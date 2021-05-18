@@ -85,7 +85,7 @@
                     <TextBlock Text="/" Height="25" Width="10" FontSize="18"/>
 
                     <TextBox x:Name="birthday_year__txt_box" Width="55" materialDesign:HintAssist.Hint="year"
-                             Height="25" VerticalAlignment="Center"/>
+                             Height="25" VerticalAlignment="Center" TextChanged="birthday_year__txt_box_TextChanged"/>
 
                 </StackPanel>
 

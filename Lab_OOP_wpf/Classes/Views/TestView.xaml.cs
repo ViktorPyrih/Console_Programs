@@ -36,6 +36,15 @@ namespace Lab_OOP_wpf.Classes.Views
         private void OnLoad() => Table.ItemsSource = viewModel.students;
 
 
+        private void birthday_year__txt_box_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!DateValidator.IsYearValidate(birthday_year__txt_box.Text))
+            {
+                birthday_year__txt_box.Text = birthday_year__txt_box.Text.Remove(birthday_year__txt_box.Text.Length - 1, 1);
+                birthday_year__txt_box.Select(birthday_year__txt_box.Text.Length, 0);
+            }
+        }
+
         private void birthday_month__txt_box_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!DateValidator.IsMonthValidate(birthday_month__txt_box.Text))
@@ -103,5 +112,7 @@ namespace Lab_OOP_wpf.Classes.Views
 
             examsView.Show();
         }
+
+        
     }
 }

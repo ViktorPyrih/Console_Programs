@@ -8,6 +8,20 @@ namespace Lab_OOP_wpf.Classes.Views_Commands
 {
     static class DateValidator
     {
+        public static bool IsYearValidate(string str_year)
+        {
+            if (str_year == "") return true;
+            try
+            {
+                var n = int.Parse(str_year);
+
+                return n <= DateTime.Now.Year;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
         public static bool IsDayValidate(string str_day)
         {

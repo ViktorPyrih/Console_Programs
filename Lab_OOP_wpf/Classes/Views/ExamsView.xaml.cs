@@ -105,5 +105,14 @@ namespace Lab_OOP_wpf.Classes.Views
                 exam_minute__txt_box.Select(exam_minute__txt_box.Text.Length, 0);
             }
         }
+
+        private void exam_year__txt_box_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!DateValidator.IsYearValidate(exam_year__txt_box.Text))
+            {
+                exam_year__txt_box.Text = exam_year__txt_box.Text.Remove(exam_year__txt_box.Text.Length - 1, 1);
+                exam_year__txt_box.Select(exam_year__txt_box.Text.Length, 0);
+            }
+        }
     }
 }
