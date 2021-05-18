@@ -66,6 +66,17 @@
                     <TextBox x:Name="exam_year__txt_box" Width="55" materialDesign:HintAssist.Hint="year"
                              Height="25" VerticalAlignment="Center"/>
 
+                    
+                    <TextBox x:Name="exam_hour__txt_box" Width="30" materialDesign:HintAssist.Hint="hour"
+                             Height="25" VerticalAlignment="Center" Margin="15,0,0,0" TextAlignment="Center"
+                             TextChanged="exam_hour__txt_box_TextChanged"/>
+
+                    <TextBlock Text=":" Height="25" Width="5" FontSize="18"/>
+
+                    <TextBox x:Name="exam_minute__txt_box" Width="35" materialDesign:HintAssist.Hint="min"
+                             Height="25" VerticalAlignment="Center" TextAlignment="Center"
+                             TextChanged="exam_minute__txt_box_TextChanged"/>
+
                 </StackPanel>
 
             </Grid>

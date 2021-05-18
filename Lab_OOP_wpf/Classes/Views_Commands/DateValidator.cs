@@ -38,5 +38,35 @@ namespace Lab_OOP_wpf.Classes.Views_Commands
                 return false;
             }
         }
+
+        public static bool IsMinuteValidate(string str_time)
+        {
+            if (str_time == "") return true;
+            try
+            {
+                var n = int.Parse(str_time);
+
+                return (n >= 0 && n < 60);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool IsHourValidate(string str_time)
+        {
+            if (str_time == "") return true;
+            try
+            {
+                var n = int.Parse(str_time);
+
+                return (n >= 0 && n < 24);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -55,7 +55,10 @@ namespace Lab_OOP_wpf.Classes.Views
                 var exam_date = new DateTime(
                     int.Parse(exam_year__txt_box.Text),
                     int.Parse(exam_month__txt_box.Text),
-                    int.Parse(exam_day__txt_box.Text));
+                    int.Parse(exam_day__txt_box.Text),
+                    int.Parse(exam_hour__txt_box.Text),
+                    int.Parse(exam_minute__txt_box.Text), 0);
+
 
                 exams.Add(new Exam(name, byte.Parse(mark), exam_date));
 
@@ -65,6 +68,7 @@ namespace Lab_OOP_wpf.Classes.Views
                 MessageBox.Show("Wrong date or mark!");
             }
         }
+
 
         private void exam_month__txt_box_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -81,6 +85,24 @@ namespace Lab_OOP_wpf.Classes.Views
             {
                 exam_day__txt_box.Text = exam_day__txt_box.Text.Remove(exam_day__txt_box.Text.Length - 1, 1);
                 exam_day__txt_box.Select(exam_day__txt_box.Text.Length, 0);
+            }
+        }
+
+        private void exam_hour__txt_box_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!DateValidator.IsHourValidate(exam_hour__txt_box.Text))
+            {
+                exam_hour__txt_box.Text = exam_hour__txt_box.Text.Remove(exam_hour__txt_box.Text.Length - 1, 1);
+                exam_hour__txt_box.Select(exam_hour__txt_box.Text.Length, 0);
+            }
+        }
+
+        private void exam_minute__txt_box_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!DateValidator.IsMinuteValidate(exam_minute__txt_box.Text))
+            {
+                exam_minute__txt_box.Text = exam_minute__txt_box.Text.Remove(exam_minute__txt_box.Text.Length - 1, 1);
+                exam_minute__txt_box.Select(exam_minute__txt_box.Text.Length, 0);
             }
         }
     }
