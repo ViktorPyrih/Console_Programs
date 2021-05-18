@@ -23,6 +23,7 @@ namespace Lab_OOP_wpf.Classes.Models
 
         private Person Person;
 
+        [DisplayName("Person")]
         public Person person
         {
             get => Person;
@@ -33,9 +34,10 @@ namespace Lab_OOP_wpf.Classes.Models
             }
         }
 
-
+        
         private EducationalLevel ObtainedEducationalLevel;
 
+        [DisplayName("Educational Level")]
         public EducationalLevel obtainedEducationalLevel
         {
             get => ObtainedEducationalLevel;
@@ -49,6 +51,7 @@ namespace Lab_OOP_wpf.Classes.Models
 
         private ObservableCollection<Exam> Exams;
 
+        [DisplayName("Exams")]
         public ObservableCollection<Exam> exams
         {
             get => Exams;

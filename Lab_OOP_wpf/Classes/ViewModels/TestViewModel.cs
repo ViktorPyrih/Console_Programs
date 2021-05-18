@@ -1,4 +1,5 @@
 ﻿using Lab_OOP_wpf.Classes.Models;
+using Lab_OOP_wpf.Classes.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace Lab_OOP_wpf.Classes.ViewModels
 {
-    class TestViewModel : BasicViewModel
+    class TestViewModel : BasicViewModel, IStudentsRepoChange
     {
-
-         
+        
         public TestViewModel()
         {
             var student1 = new Student(new Person("Ivan", "Ivanovich", new DateTime(2001, 12, 20)), EducationalLevel.Bachelor);
@@ -25,6 +25,12 @@ namespace Lab_OOP_wpf.Classes.ViewModels
 
             students[0].AddExam(math_exam);
         }
+
+        public void AddStudent(Student student) => students.Add(student);
+
+        public void RemoveStudent(Student student) => students.Remove(student);
+
+        public void RemoveStudentAt(int index) => students.RemoveAt(index);
 
     }
 }

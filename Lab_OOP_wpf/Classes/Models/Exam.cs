@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Lab_OOP_wpf.Classes.Models
 {
-    class Exam : ICloneable, IEquatable<Exam>
+    public class Exam : ICloneable, IEquatable<Exam>
     {
         public Exam(string name, byte mark, DateTime exam_day)
         {
@@ -15,11 +16,14 @@ namespace Lab_OOP_wpf.Classes.Models
             this.exam_day = exam_day;
         }
 
-        public string name { get; set; }
+        [DisplayName("Exam Name")]
+        public string name { get; }
 
-        public byte mark { get; set; }
+        [DisplayName("Mark")]
+        public byte mark { get; }
 
-        public DateTime exam_day { get; set; }
+        [DisplayName("Exam Date")]
+        public DateTime exam_day { get; }
 
 
         public object Clone() => new Exam(name, mark, exam_day);
