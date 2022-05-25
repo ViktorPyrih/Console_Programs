@@ -1,0 +1,80 @@
+﻿<Page x:Class="Lab_OOP_wpf.views.StudentsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StudentsView">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0" x:Name="StudentsTable" AutoGenerateColumns="False">
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Exams" Click="SeeExamsButtonClick"
+                                    Style="{DynamicResource MaterialDesignFlatLightBgButton}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Path=Person.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Name"/>
+                <DataGridTextColumn Binding="{Binding Path=Person.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Surname"/>
+                <DataGridTextColumn Binding="{Binding Path=Person.Birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:dd/MM/yyyy}}" Header="Birthday"/>
+                <DataGridTextColumn Binding="{Binding Path=EducationalLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Education"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Click="DeleteButtonClick"
+                                    Style="{DynamicResource MaterialDesignFlatMidBgButton}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <Grid Grid.Row="1" Background="GhostWhite">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Width="70" Height="50" 
+                    Content="Add" FontSize="20" Style="{StaticResource MaterialDesignOutlinedButton}"
+                    Click="AddButtonClick"/>
+
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <TextBox x:Name="StudentNameTxtBox" Width="150" materialDesign:HintAssist.Hint="Name"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"/>
+                    <TextBox x:Name="StudentSurnameTxtBox" Width="150" materialDesign:HintAssist.Hint="Surname"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"/>
+                    <ComboBox x:Name="EducationComboBox" Width="150" 
+                              Height="25" VerticalAlignment="Center" Margin="5, 0"
+                              Foreground="Black" Background="Transparent"
+                              materialDesign:HintAssist.Hint="Education"/>
+                    <DatePicker x:Name="BirthdayCalendar"  Grid.Row="0" Height="25" VerticalAlignment="Center" Margin="5, 0" materialDesign:HintAssist.Hint="Date of birth"/>
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+
+</Page>

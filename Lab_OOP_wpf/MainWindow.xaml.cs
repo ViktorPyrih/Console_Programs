@@ -1,4 +1,5 @@
-﻿using Lab_OOP_wpf.Classes.Views;
+﻿using Lab_OOP_wpf.ua.cdu.edu.vu.view_model;
+using Lab_OOP_wpf.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,25 @@ namespace Lab_OOP_wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        private event Action OnClose;
+        private StudentViewModel studentViewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+            this.studentViewModel = new StudentViewModel();
+            OnLoad();
+        }
 
-            ViewFrame.Content = new TestView();
+        private void OnLoad() 
+        {
+            ViewFrame.Content = new StudentsView(studentViewModel);
+            OnClose = studentViewModel.OnClose;
+        }
+
+        private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            OnClose();
         }
     }
 }

@@ -1,0 +1,67 @@
+﻿<Window x:Class="Lab_OOP_wpf.views.ExamsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" 
+        Height="450" 
+        Width="800">
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0" x:Name="ExamsTable" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Exam Name"/>
+                <DataGridTextColumn Binding="{Binding Path=Mark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Mark"/>
+                <DataGridTextColumn Binding="{Binding Path=ExamDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Exam date"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Click="DeleteButtonClick"
+                                    Style="{DynamicResource MaterialDesignFlatMidBgButton}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="1" Background="GhostWhite">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Width="70" Height="50" 
+                    Content="Add" FontSize="20" Style="{StaticResource MaterialDesignOutlinedButton}"
+                    x:Name="AddButton" Click="AddButtonClick"/>
+
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <TextBox x:Name="ExamNameTxtBox" Width="150" materialDesign:HintAssist.Hint="Exam name"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"/>
+                    <TextBox x:Name="ExamMarkTxtBox" Width="50" materialDesign:HintAssist.Hint="Mark"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"/>
+                    <DatePicker x:Name="ExamCalendar" Grid.Row="0" Height="25" Margin="5, 0" materialDesign:HintAssist.Hint="Exam date"/>
+                    <materialDesign:TimePicker  x:Name="ExamTime" Grid.Row="0" Height="25"></materialDesign:TimePicker>
+                </StackPanel>
+
+            </Grid>
+            
+        </Grid>
+        
+    </Grid>
+
+</Window>
