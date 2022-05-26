@@ -95,6 +95,9 @@
     <Compile Include="ua\cdu\edu\vu\repository\StudentRepository.cs" />
     <Compile Include="ua\cdu\edu\vu\service\StudentService.cs" />
     <Compile Include="ua\cdu\edu\vu\utils\ValidationUtils.cs" />
+    <Compile Include="ua\cdu\edu\vu\view_model\helper\ExamsViewHelper.cs" />
+    <Compile Include="ua\cdu\edu\vu\view_model\helper\StudentsViewHelper.cs" />
+    <Compile Include="ua\cdu\edu\vu\view_model\helper\ViewHelper.cs" />
     <Compile Include="ua\cdu\edu\vu\view_model\StudentViewModel.cs" />
     <Compile Include="views\ExamsView.xaml.cs">
       <DependentUpon>ExamsView.xaml</DependentUpon>

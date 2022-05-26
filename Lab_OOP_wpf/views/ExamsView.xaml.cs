@@ -1,5 +1,6 @@
 ﻿using Lab_OOP_wpf.ua.cdu.edu.vu.model;
 using Lab_OOP_wpf.ua.cdu.edu.vu.utils;
+using Lab_OOP_wpf.ua.cdu.edu.vu.view_model.helper;
 
 using System;
 using System.ComponentModel;
@@ -13,11 +14,13 @@ namespace Lab_OOP_wpf.views
     /// </summary>
     partial class ExamsView : Window
     {
+        private ViewHelper<Exam> viewHelper;
         private Student student;
 
         public ExamsView(Student student)
         {
             InitializeComponent();
+            this.viewHelper = new ExamsViewHelper(ExamNameTxtBox, ExamMarkTxtBox, ExamCalendar, ExamTime);
             this.student = student;
             OnLoad();
         }
@@ -28,36 +31,27 @@ namespace Lab_OOP_wpf.views
             ExamsTable.ItemsSource = student.Exams;
         }
 
-        private void ExamsTableAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            e.Column.Header = ((PropertyDescriptor)e.PropertyDescriptor)?.DisplayName ?? e.Column.Header;
-        }
-
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            var (name, mark) = (ExamNameTxtBox.Text, ExamMarkTxtBox.Text);
-
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(mark))
+            if (!viewHelper.ValidateRecord()) 
             {
-                MessageBox.Show("Name or mark is empty.");
                 return;
             }
 
-            if (!ValidationUtils.isValidMark(ExamMarkTxtBox.Text)) 
-            {
-                MessageBox.Show("Mark field is not valid.");
-            }
+            student.AddExam(viewHelper.ConvertRecord());
 
-            var examTime = ExamTime.SelectedTime.GetValueOrDefault(DateTime.Now);
-            var examDate = ExamCalendar.SelectedDate.GetValueOrDefault(DateTime.Now)
-                .Add(examTime.TimeOfDay);
-            student.AddExam(new Exam(name, byte.Parse(mark), examDate));
+            viewHelper.CLear();
         }
 
         private void DeleteButtonClick(object sender, RoutedEventArgs e) 
         {
             Exam exam = (sender as Button).DataContext as Exam;
             student.DeleteExam(exam);
+        }
+
+        private void ViewClosing(object sender, CancelEventArgs e)
+        {
+            e.Cancel = viewHelper.OnClose(exam => student.AddExam(exam));
         }
     }
 }

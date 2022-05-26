@@ -1,4 +1,5 @@
 ﻿using Lab_OOP_wpf.ua.cdu.edu.vu.view_model;
+using Lab_OOP_wpf.ua.cdu.edu.vu.view_model.helper;
 using Lab_OOP_wpf.views;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,8 @@ namespace Lab_OOP_wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        private event Action OnClose;
         private StudentViewModel studentViewModel;
+        private StudentsViewHelper studentsViewHelper;
 
         public MainWindow()
         {
@@ -34,13 +35,23 @@ namespace Lab_OOP_wpf
 
         private void OnLoad() 
         {
-            ViewFrame.Content = new StudentsView(studentViewModel);
-            OnClose = studentViewModel.OnClose;
+            StudentsView studentsView = new StudentsView(studentViewModel);
+            studentsViewHelper = studentsView.ViewHelper;
+            ViewFrame.Content = studentsView;
         }
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            OnClose();
+            e.Cancel = studentsViewHelper.OnClose(student => studentViewModel.AddStudent(student));
+            studentViewModel.SaveStudentsToStorage();
+        }
+
+        private void WindowKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F5) 
+            {
+                studentViewModel.SaveStudentsToStorage();
+            }
         }
     }
 }

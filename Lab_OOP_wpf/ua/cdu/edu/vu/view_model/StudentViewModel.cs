@@ -31,7 +31,7 @@ namespace Lab_OOP_wpf.ua.cdu.edu.vu.view_model
             studentService.DeleteStudent(student);
         }
 
-        public void OnClose() 
+        public void SaveStudentsToStorage() 
         {
             studentService.SaveStudents();
         }

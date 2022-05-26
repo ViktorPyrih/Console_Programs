@@ -1,5 +1,7 @@
 ﻿using Lab_OOP_wpf.ua.cdu.edu.vu.model;
 using Lab_OOP_wpf.ua.cdu.edu.vu.view_model;
+using Lab_OOP_wpf.ua.cdu.edu.vu.view_model.helper;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,11 +25,22 @@ namespace Lab_OOP_wpf.views
     /// </summary>
     public partial class StudentsView : Page
     {
+        private StudentsViewHelper viewHelper;
+        public StudentsViewHelper ViewHelper
+        {
+            get => viewHelper;
+            private set
+            {
+                viewHelper = value;
+            }
+        }
+
         private StudentViewModel viewModel;
 
         public StudentsView(StudentViewModel viewModel)
         {
             InitializeComponent();
+            this.viewHelper = new StudentsViewHelper(StudentNameTxtBox, StudentSurnameTxtBox, EducationComboBox, BirthdayCalendar);
             this.viewModel = viewModel;
             OnLoad();
         }
@@ -39,24 +52,14 @@ namespace Lab_OOP_wpf.views
 
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            var (name, surname) = (StudentNameTxtBox.Text, StudentSurnameTxtBox.Text);
-
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname))
+            if (!viewHelper.ValidateRecord())
             {
-                MessageBox.Show("Name or surname is empty.");
                 return;
             }
 
-            if (EducationComboBox.SelectedItem is null)
-            {
-                MessageBox.Show("Educational level is empty.");
-                return;
-            }
+            viewModel.AddStudent(viewHelper.ConvertRecord());
 
-            viewModel.AddStudent(
-                new Student(new Person(name, surname, BirthdayCalendar.SelectedDate.GetValueOrDefault(DateTime.Now)),
-                (EducationalLevel)EducationComboBox.SelectedItem)
-            );
+            viewHelper.CLear();
         }
 
         private void SeeExamsButtonClick(object sender, RoutedEventArgs e)
