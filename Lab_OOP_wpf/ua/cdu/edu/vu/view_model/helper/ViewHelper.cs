@@ -9,6 +9,9 @@ namespace Lab_OOP_wpf.ua.cdu.edu.vu.view_model.helper
 {
     public abstract class ViewHelper<T>
     {
+
+        private static readonly string QUESTION = "Would you like to save changes?";
+
         protected ViewHelper() 
         {
         }
@@ -21,11 +24,11 @@ namespace Lab_OOP_wpf.ua.cdu.edu.vu.view_model.helper
 
         public abstract void CLear();
 
-        public bool OnClose(Action<T> beforeCloseAction) 
+        public bool OnClose(Action<T> beforeCloseAction, string caption) 
         {
             if (!IsRecordEmpty())
             {
-                MessageBoxResult result = MessageBox.Show("Would you like to save changes?", "Notification", MessageBoxButton.YesNoCancel);
+                MessageBoxResult result = MessageBox.Show(QUESTION, caption, MessageBoxButton.YesNoCancel);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:

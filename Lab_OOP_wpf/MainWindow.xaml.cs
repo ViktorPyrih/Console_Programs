@@ -23,6 +23,8 @@ namespace Lab_OOP_wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        private event Action OnClose;
+
         private StudentViewModel studentViewModel;
         private StudentsViewHelper studentsViewHelper;
 
@@ -36,13 +38,15 @@ namespace Lab_OOP_wpf
         private void OnLoad() 
         {
             StudentsView studentsView = new StudentsView(studentViewModel);
+            OnClose = studentsView.Close;
             studentsViewHelper = studentsView.ViewHelper;
             ViewFrame.Content = studentsView;
         }
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = studentsViewHelper.OnClose(student => studentViewModel.AddStudent(student));
+            OnClose();
+            e.Cancel = studentsViewHelper.OnClose(student => studentViewModel.AddStudent(student), Title);
             studentViewModel.SaveStudentsToStorage();
         }
 

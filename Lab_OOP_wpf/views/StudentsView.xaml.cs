@@ -36,13 +36,25 @@ namespace Lab_OOP_wpf.views
         }
 
         private StudentViewModel viewModel;
+        
+        private IList<Window> childrentViews;
 
         public StudentsView(StudentViewModel viewModel)
         {
             InitializeComponent();
             this.viewHelper = new StudentsViewHelper(StudentNameTxtBox, StudentSurnameTxtBox, EducationComboBox, BirthdayCalendar);
             this.viewModel = viewModel;
+            this.childrentViews = new List<Window>();
             OnLoad();
+        }
+
+        
+        public void Close() 
+        {
+            foreach (Window window in childrentViews) 
+            {
+                window.Close();
+            }
         }
 
         private void OnLoad() {
@@ -66,6 +78,7 @@ namespace Lab_OOP_wpf.views
         {
             Student student = (sender as Button).DataContext as Student;
             ExamsView examsView = new ExamsView(student);
+            childrentViews.Add(examsView);
             examsView.Show();
         }
 

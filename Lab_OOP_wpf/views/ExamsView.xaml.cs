@@ -51,7 +51,7 @@ namespace Lab_OOP_wpf.views
 
         private void ViewClosing(object sender, CancelEventArgs e)
         {
-            e.Cancel = viewHelper.OnClose(exam => student.AddExam(exam));
+            e.Cancel = viewHelper.OnClose(exam => student.AddExam(exam), Title);
         }
     }
 }
